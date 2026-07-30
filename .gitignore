@@ -1,0 +1,10 @@
+# ไม่เอา Database ขึ้น Git
+*.db
+local_data.db
+
+# ไม่เอาไฟล์แอบซ่อนของระบบ macOS ขึ้น Git
+.DS_Store
+
+# ไม่เอาไฟล์ขยะของ Python ขึ้น Git
+__pycache__/
+*.pyc
