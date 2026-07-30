@@ -1,46 +1,52 @@
 /* ตั้งค่าฟอนต์สไตล์ Apple (SF Pro) และพื้นหลังเบลอๆ */
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;
 }
 
-/* กรอบหน้าต่างสไตล์ macOS */
+/* กรอบหน้าต่างสไตล์ macOS (ปรับให้ Responsive) */
 .mac-window {
-    width: 900px;
-    max-width: 95vw;
-    height: 600px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 900px;
+    height: 80vh;
+    max-height: 700px;
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 /* แถบด้านบน (Title bar) */
 .title-bar {
-    height: 40px;
+    height: 38px;
     background: rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     padding: 0 15px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .mac-buttons {
     display: flex;
     gap: 8px;
+    z-index: 2;
 }
 
 .mac-buttons span {
@@ -57,48 +63,52 @@ body {
     position: absolute;
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: #555;
+    color: #444;
     left: 0;
     pointer-events: none;
 }
 
-/* พื้นที่เนื้อหา แบ่ง 2 คอลัมน์ */
+/* พื้นที่เนื้อหา */
 .content {
     display: flex;
     flex: 1;
     overflow: hidden;
 }
 
-/* ช่องแรก: ฟอร์มกรอกข้อมูล */
+/* ช่องซ้าย: ฟอร์มกรอกข้อมูล */
 .left-pane {
     width: 40%;
-    padding: 30px;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 label {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 input, textarea {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     font-family: inherit;
     font-size: 14px;
     outline: none;
@@ -107,12 +117,13 @@ input, textarea {
 
 input:focus, textarea:focus {
     border-color: #007AFF;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.25);
 }
 
 textarea {
-    resize: none;
-    height: 80px;
+    resize: vertical;
+    min-height: 70px;
 }
 
 .btn-submit {
@@ -124,11 +135,11 @@ textarea {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 10px;
+    transition: all 0.2s;
+    margin-top: 5px;
 }
 
-.btn-submit:hover { background: #0056b3; }
+.btn-submit:hover { background: #0062cc; }
 
 .btn-clear {
     background: transparent;
@@ -139,7 +150,7 @@ textarea {
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: auto;
+    margin-top: 20px;
     transition: all 0.2s;
 }
 
@@ -148,48 +159,128 @@ textarea {
     color: white;
 }
 
-/* ช่องสอง: แสดงข้อมูลสรุป */
+/* ช่องขวา: แสดงข้อมูลสรุป */
 .right-pane {
     width: 60%;
-    padding: 30px;
+    padding: 25px;
     overflow-y: auto;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
 }
 
 .no-data {
     text-align: center;
     color: #777;
-    margin-top: 40%;
+    margin-top: 30%;
     font-style: italic;
+    font-size: 14px;
 }
 
 /* การ์ดแสดงข้อมูลแต่ละอัน */
 .data-card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: center;
     animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.data-info { flex: 1; }
+.data-info { 
+    flex: 1; 
+    min-width: 0; /* ป้องกัน Text Overflow ล้นการ์ด */
+}
 
-.data-info h3 { margin: 0 0 8px 0; color: #111; font-size: 18px; }
-.data-info p { margin: 0 0 10px 0; color: #555; font-size: 14px; line-height: 1.4; }
-.data-info a { color: #007AFF; text-decoration: none; font-size: 13px; word-break: break-all; }
+.data-info h3 { 
+    margin: 0 0 6px 0; 
+    color: #111; 
+    font-size: 16px; 
+    word-break: break-word;
+}
+
+.data-info p { 
+    margin: 0 0 8px 0; 
+    color: #555; 
+    font-size: 13px; 
+    line-height: 1.4; 
+    word-break: break-word;
+}
+
+.data-info a { 
+    color: #007AFF; 
+    text-decoration: none; 
+    font-size: 12px; 
+    word-break: break-all; 
+}
+
+.data-qr {
+    flex-shrink: 0;
+}
 
 .data-qr img {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
     border: 1px solid #eee;
+    display: block;
+}
+
+/* ========================================================= */
+/* 📱 RESPONSIVE BREAKPOINTS (เวทมนตร์สำหรับหน้าจอเล็ก / มือถือ) */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .mac-window {
+        height: 95vh;
+        max-height: none;
+    }
+
+    .content {
+        flex-direction: column; /* เปลี่ยนจากซ้าย-ขวา เป็น บน-ล่าง */
+        overflow-y: auto;
+    }
+
+    .left-pane {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        flex-shrink: 0;
+    }
+
+    .right-pane {
+        width: 100%;
+        padding: 20px;
+        overflow-y: visible;
+    }
+
+    .no-data {
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+}
+
+@media (max-width: 480px) {
+    .data-card {
+        flex-direction: column-reverse; /* เอารูป QR ขึ้นบน/ล่าง เวลาย่อจอเล็กมากๆ */
+        text-align: center;
+    }
+
+    .data-qr img {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto;
+    }
 }
