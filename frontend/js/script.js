@@ -1,5 +1,5 @@
-// ชี้ไปที่พอร์ต 8000
-const API_BASE = 'http://localhost:8000/api';
+// ชี้ไปที่ window.location.hostname
+const API_BASE = `http://${window.location.hostname}:8000/api`;
 
 // โหลดข้อมูลทันทีที่เปิดเว็บ
 document.addEventListener('DOMContentLoaded', loadData);
